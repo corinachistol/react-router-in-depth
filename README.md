@@ -1,3 +1,5 @@
+![image](https://github.com/corinachistol/react-router-in-depth/assets/115491975/68f6372a-d89c-4ed3-aa66-10d6615b3c6c)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

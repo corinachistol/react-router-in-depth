@@ -1,8 +1,12 @@
-const Contact = () => {
+import { Form,redirect, useActionData } from "react-router-dom";
+
+export const Contact = () => {
+    const data = useActionData()
+
     return ( 
         <div className="contact">
             <h3>Contact</h3>
-            <form>
+            <Form method="post" action="/help/contact">
                 <label>
                     <span>Your email:</span>
                     <input type="email" name="email" required />
@@ -15,9 +19,29 @@ const Contact = () => {
 
                 <button>Submit</button>
 
-            </form>
+                {data && data.error && <p>{data.error}</p> }
+
+            </Form>
         </div>
      );
 }
  
-export default Contact;
+
+export const contactAction = async ({ request }) =>{
+    
+    const data = await request.formData()
+
+    const submission ={
+        email:data.get('email'),
+        message:data.get('message',)
+    }
+    console.log(submission)
+    //in real project, here must be a post request to the db
+
+    if(submission.message.length < 10 ) {
+        return {error:"Message must be over 10 chars longer"}
+    }
+
+    //redirect the user
+    return redirect('/')
+}  
